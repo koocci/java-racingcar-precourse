@@ -1,11 +1,17 @@
 package racingcar;
 
 public class Car {
+    private final Name name;
     private Position position;
 
+    public Car(String name) {
+        this.name = new Name(name);
+    }
+
     public DirectionStatus getStatus() {
-        if(isMoveForward())
+        if (isMoveForward()) {
             return DirectionStatus.MOVE_FORWARD;
+        }
         return DirectionStatus.STOP;
     }
 
@@ -15,5 +21,9 @@ public class Car {
 
     public void setPosition(int position) {
         this.position = new Position(position);
+    }
+
+    public String getName() {
+        return this.name.getName();
     }
 }
