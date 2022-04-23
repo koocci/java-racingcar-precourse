@@ -48,4 +48,62 @@ public class CarTest {
         DirectionStatus status = car.getStatus();
         assertThat(status).isEqualTo(DirectionStatus.STOP);
     }
+
+    @Test
+    @DisplayName("차량_현재_위치_출력_전진")
+    void 차량_현재_위치_출력_전진() {
+        car.setPosition(6);
+        assertThat(car.getScore()).isEqualTo("-");
+    }
+
+    @Test
+    @DisplayName("차량_현재_위치_출력_멈춤")
+    void 차량_현재_위치_출력_멈춤() {
+        car.setPosition(3);
+        assertThat(car.getScore()).isEqualTo("");
+    }
+
+    @Test
+    @DisplayName("차량_현재_이름_위치_출력_전진")
+    void 차량_실행_결과_출력_전진() {
+        car.setPosition(6);
+        assertThat(car.getResult()).isEqualTo("hobi : -");
+    }
+
+    @Test
+    @DisplayName("차량_현재_이름_위치_출력_멈춤")
+    void 차량_실행_결과_출력_멈춤() {
+        car.setPosition(3);
+        assertThat(car.getResult()).isEqualTo("hobi : ");
+    }
+
+    @Test
+    @DisplayName("차량_현재_이름_위치_출력_전진")
+    void 여러번_차량_실행_결과_출력_전진() {
+        int matchCnt = 5;
+        for(int i = 0; i < matchCnt; i ++) {
+            car.setPosition(6);
+        }
+        assertThat(car.getResult()).isEqualTo("hobi : -----");
+    }
+
+    @Test
+    @DisplayName("차량_현재_이름_위치_출력_멈춤")
+    void 여러번_차량_실행_결과_출력_멈춤() {
+        int matchCnt = 5;
+        for(int i = 0; i < matchCnt; i ++) {
+            car.setPosition(3);
+        }
+        assertThat(car.getResult()).isEqualTo("hobi : ");
+    }
+
+    @Test
+    @DisplayName("차량_현재_이름_위치_출력_혼합")
+    void 차량_현재_이름_위치_출력_혼합() {
+        int[] positionArr = {1,2,3,4,5,6,7,8,9,0};
+        for(int pos: positionArr) {
+            car.setPosition(pos);
+        }
+        assertThat(car.getResult()).isEqualTo("hobi : ------");
+    }
 }
