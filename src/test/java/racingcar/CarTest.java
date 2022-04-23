@@ -10,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.configuration.DirectionStatus;
+import racingcar.model.Car;
 
 public class CarTest {
     private Car car;
@@ -82,7 +84,7 @@ public class CarTest {
     @DisplayName("차량_현재_이름_위치_출력_전진")
     void 여러번_차량_실행_결과_출력_전진() {
         int matchCnt = 5;
-        for(int i = 0; i < matchCnt; i ++) {
+        for (int i = 0; i < matchCnt; i++) {
             car.setPosition(6);
         }
         assertThat(car.getResult()).isEqualTo("hobi : -----");
@@ -92,7 +94,7 @@ public class CarTest {
     @DisplayName("차량_현재_이름_위치_출력_멈춤")
     void 여러번_차량_실행_결과_출력_멈춤() {
         int matchCnt = 5;
-        for(int i = 0; i < matchCnt; i ++) {
+        for (int i = 0; i < matchCnt; i++) {
             car.setPosition(3);
         }
         assertThat(car.getResult()).isEqualTo("hobi : ");
@@ -101,8 +103,8 @@ public class CarTest {
     @Test
     @DisplayName("차량_현재_이름_위치_출력_혼합")
     void 차량_현재_이름_위치_출력_혼합() {
-        int[] positionArr = {1,2,3,4,5,6,7,8,9,0};
-        for(int pos: positionArr) {
+        int[] positionArr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        for (int pos : positionArr) {
             car.setPosition(pos);
         }
         assertThat(car.getResult()).isEqualTo("hobi : ------");
@@ -111,7 +113,7 @@ public class CarTest {
     @Test
     @DisplayName("차량_위치_입력_0부터_9까지_여부_TRUE")
     void 차량_위치_입력_0부터_9까지_여부_TRUE() {
-        int[] positionArr = {1,2,3,4,5,6,7,8,9,0};
+        int[] positionArr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
         car.setPosition(1);
 
     }

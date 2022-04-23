@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.configuration;
 
 public enum DirectionStatus {
     STOP, MOVE_FORWARD;

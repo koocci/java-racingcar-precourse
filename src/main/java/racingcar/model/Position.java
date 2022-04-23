@@ -1,6 +1,8 @@
-package racingcar;
+package racingcar.model;
 
 import static racingcar.configuration.ErrorMessage.ERR_CAR_POSITION_LIMIT_MSG;
+
+import racingcar.util.ValidationUtils;
 
 public class Position {
     public static final int MOVE_FORWARD_LOWER_BOUND = 4;
@@ -14,6 +16,6 @@ public class Position {
     }
 
     public boolean isMoveForwardPosition() {
-        return this.value  >= MOVE_FORWARD_LOWER_BOUND;
+        return this.value >= MOVE_FORWARD_LOWER_BOUND;
     }
 }

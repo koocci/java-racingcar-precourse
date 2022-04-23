@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.util.ValidationUtils;
 
 public class ValidationUtilsTest {
 
@@ -28,7 +29,7 @@ public class ValidationUtilsTest {
     }
 
     @ParameterizedTest(name = "차량_위치_0_9_제한_TRUE")
-    @ValueSource(ints = {0,1,2,3,4,5,6,7,8,9})
+    @ValueSource(ints = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9})
     void 차량_위치_0_9_제한_TRUE(int position) {
         assertThat(ValidationUtils.validCarPosition(position)).isTrue();
     }

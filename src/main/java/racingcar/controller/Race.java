@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.controller;
 
 import static racingcar.configuration.PrintMessage.INPUT_CAR_NAME_MSG;
 import static racingcar.configuration.PrintMessage.INPUT_RACE_ROUND_MSG;
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.StringJoiner;
+import racingcar.model.Car;
+import racingcar.model.Cars;
+import racingcar.model.Round;
 
 public class Race {
     private static final int UNDER_BOUND_NUMBER = 0;
@@ -62,7 +65,7 @@ public class Race {
     }
 
     public void racing() {
-        for(int i = 0; i < getRound(); i++) {
+        for (int i = 0; i < getRound(); i++) {
             setPositions();
             System.out.println(OUTPUT_RESULT_MSG);
             System.out.println(getRoundResult());
@@ -72,7 +75,7 @@ public class Race {
     }
 
     public void setPositions() {
-        for(Car car: cars.findCars()) {
+        for (Car car : cars.findCars()) {
             car.setPosition(getRandomNumber());
         }
     }
@@ -87,18 +90,18 @@ public class Race {
 
     public String getRaceResult() {
         List<String> result = new ArrayList<>();
-        for(Car car : findCars()) {
+        for (Car car : findCars()) {
             setWinnerNames(result, car);
         }
         StringJoiner sj = new StringJoiner(", ");
-        for(String str : result) {
+        for (String str : result) {
             sj.add(str);
         }
-        return OUTPUT_WINNER_MSG + sj.toString();
+        return OUTPUT_WINNER_MSG + sj;
     }
 
     private void setWinnerNames(List<String> result, Car car) {
-        if(isWinner(car)){
+        if (isWinner(car)) {
             result.add(car.getName());
         }
     }
@@ -109,15 +112,13 @@ public class Race {
 
     public int getMaxScoreInRace() {
         int maxScore = Integer.MIN_VALUE;
-        for(Car car : findCars()) {
+        for (Car car : findCars()) {
             maxScore = getMaxScore(maxScore, car);
         }
         return maxScore;
     }
 
     private int getMaxScore(int maxScore, Car car) {
-        if(maxScore < car.getScore())
-            return car.getScore();
-        return maxScore;
+        return Math.max(maxScore, car.getScore());
     }
 }

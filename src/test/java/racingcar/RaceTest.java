@@ -1,7 +1,6 @@
 package racingcar;
 
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayInputStream;
@@ -11,6 +10,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.controller.Race;
+import racingcar.model.Car;
 
 public class RaceTest {
     private Race race;
@@ -65,7 +66,7 @@ public class RaceTest {
         race.setCarNames();
         setInputStream("1");
         race.setRaceRound();
-        for(Car car: race.findCars()) {
+        for (Car car : race.findCars()) {
             car.setPosition(5);
         }
         assertThat(race.getRoundResult()).isEqualTo("pobi : -\nwoni : -\njun : -");
@@ -78,7 +79,7 @@ public class RaceTest {
         race.setCarNames();
         setInputStream("2");
         race.setRaceRound();
-        for(Car car: race.findCars()) {
+        for (Car car : race.findCars()) {
             car.setPosition(6);
             car.setPosition(9);
         }

@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.util;
 
 import java.util.Objects;
 
@@ -18,7 +18,7 @@ public class ValidationUtils {
     public static boolean validRaceRound(String round) {
         try {
             Integer.parseInt(round);
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
         return round.matches("\\d+");

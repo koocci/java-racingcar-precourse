@@ -1,8 +1,8 @@
-package racingcar;
+package racingcar.model;
 
 import static racingcar.configuration.ErrorMessage.ERR_CAR_NAME_LENGTH_LIMIT_MSG;
 
-import java.util.Objects;
+import racingcar.util.ValidationUtils;
 
 public class Name {
     private final String value;

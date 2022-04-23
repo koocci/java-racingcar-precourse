@@ -1,4 +1,6 @@
-package racingcar;
+package racingcar.model;
+
+import racingcar.configuration.DirectionStatus;
 
 public class Car {
     private final Name name;
@@ -27,8 +29,9 @@ public class Car {
     }
 
     private void setScore() {
-        if(getStatus().isMoveForward())
+        if (getStatus().isMoveForward()) {
             this.score.setMoveForward();
+        }
     }
 
     public String getScoreLine() {

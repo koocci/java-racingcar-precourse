@@ -1,7 +1,8 @@
-package racingcar;
+package racingcar.model;
 
-import static racingcar.configuration.ErrorMessage.ERR_CAR_POSITION_LIMIT_MSG;
 import static racingcar.configuration.ErrorMessage.ERR_RACE_ROUND_INTEGER_LIMIT_MSG;
+
+import racingcar.util.ValidationUtils;
 
 public class Round {
     private final int value;

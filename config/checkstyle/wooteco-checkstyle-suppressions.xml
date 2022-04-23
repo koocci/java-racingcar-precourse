@@ -5,4 +5,8 @@
 
 <suppressions>
     <suppress files="ApplicationTest.java" checks="MethodName"/>
+    <suppress files="CarsTest.java" checks="MethodName"/>
+    <suppress files="CarTest.java" checks="MethodName"/>
+    <suppress files="RaceTest.java" checks="MethodName"/>
+    <suppress files="ValidationUtilsTest.java" checks="MethodName"/>
 </suppressions>
