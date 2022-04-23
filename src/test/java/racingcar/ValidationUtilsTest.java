@@ -38,4 +38,16 @@ public class ValidationUtilsTest {
     void 차량_위치_0_9_제한_FALSE(int position) {
         assertThat(ValidationUtils.validCarPosition(position)).isFalse();
     }
+
+    @ParameterizedTest(name = "라운드_횟수_숫자_제한")
+    @ValueSource(strings = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "100", "1000", "2147483647"})
+    void 라운드_횟수_숫자_제한_TRUE(String round) {
+        assertThat(ValidationUtils.validRaceRound(round)).isTrue();
+    }
+
+    @ParameterizedTest(name = "라운드_횟수_숫자_제한")
+    @ValueSource(strings = {"-1", "a", "@", " ", "", "3r3", "31rm", "0x7fffffff", "2147483648"})
+    void 라운드_횟수_숫자_제한_FALSE(String round) {
+        assertThat(ValidationUtils.validRaceRound(round)).isFalse();
+    }
 }

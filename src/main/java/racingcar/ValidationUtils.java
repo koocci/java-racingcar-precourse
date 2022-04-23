@@ -14,4 +14,13 @@ public class ValidationUtils {
     public static boolean validCarPosition(int position) {
         return MIN_POSITION <= position && position <= MAX_POSITION;
     }
+
+    public static boolean validRaceRound(String round) {
+        try {
+            Integer.parseInt(round);
+        } catch (NumberFormatException e){
+            return false;
+        }
+        return round.matches("\\d+");
+    }
 }
