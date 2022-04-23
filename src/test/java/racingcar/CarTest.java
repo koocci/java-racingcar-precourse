@@ -26,7 +26,7 @@ public class CarTest {
     }
 
     @ParameterizedTest(name = "차량_이름_5자이내_Valid_확인")
-    @ValueSource(strings = {"1f123f123f", "3434fq", "zcxv211", "      "})
+    @ValueSource(strings = {"1f123f123f", "3434fq", "zcxv211", "   ", ""})
     void 차량_이름_5자이내_Valid_확인(final String name) {
         assertThatThrownBy(() -> {
             new Car(name);

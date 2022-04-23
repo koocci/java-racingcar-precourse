@@ -8,7 +8,7 @@ public class ValidationUtils {
     public static final int MIN_POSITION = 0;
 
     public static boolean validCarName(String name) {
-        return Objects.nonNull(name) && (name.length() <= MAX_LENGTH);
+        return Objects.nonNull(name) && !name.trim().isEmpty() && (name.length() <= MAX_LENGTH);
     }
 
     public static boolean validCarPosition(int position) {
