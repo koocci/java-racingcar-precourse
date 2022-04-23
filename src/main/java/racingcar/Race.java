@@ -2,12 +2,18 @@ package racingcar;
 
 import static racingcar.configuration.PrintMessage.INPUT_CAR_NAME_MSG;
 import static racingcar.configuration.PrintMessage.INPUT_RACE_ROUND_MSG;
+import static racingcar.configuration.PrintMessage.OUTPUT_WINNER_MSG;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class Race {
+    private static final int UNDER_BOUND_NUMBER = 0;
+    private static final int UPPER_BOUND_NUMBER = 9;
     private Cars cars;
     private Round round;
 
@@ -46,5 +52,69 @@ public class Race {
     private String getRaceRoundInput() {
         System.out.println(INPUT_RACE_ROUND_MSG);
         return Console.readLine();
+    }
+
+    public void start() {
+        setCarNames();
+        setRaceRound();
+        racing();
+    }
+
+    public void racing() {
+        for(int i = 0; i < getRound(); i++) {
+            setPositions();
+            System.out.println(getRoundResult());
+        }
+        System.out.println(getRaceResult());
+    }
+
+    public void setPositions() {
+        for(Car car: cars.findCars()) {
+            car.setPosition(getRandomNumber());
+        }
+    }
+
+    private int getRandomNumber() {
+        return Randoms.pickNumberInRange(UNDER_BOUND_NUMBER, UPPER_BOUND_NUMBER);
+    }
+
+    public String getRoundResult() {
+        return cars.getResults();
+    }
+
+    public String getRaceResult() {
+        List<String> result = new ArrayList<>();
+        for(Car car : findCars()) {
+            setWinnerNames(result, car);
+        }
+        StringJoiner sj = new StringJoiner(", ");
+        for(String str : result) {
+            sj.add(str);
+        }
+        return OUTPUT_WINNER_MSG + sj.toString();
+    }
+
+    private void setWinnerNames(List<String> result, Car car) {
+        if(isWinner(car)){
+            result.add(car.getName());
+        }
+    }
+
+    private boolean isWinner(Car car) {
+        return car.getScore() == getMaxScoreInRace();
+    }
+
+    public int getMaxScoreInRace() {
+        int maxScore = Integer.MIN_VALUE;
+        for(Car car : findCars()) {
+            maxScore = getMaxScore(maxScore, car);
+        }
+        return maxScore;
+    }
+
+    private int getMaxScore(int maxScore, Car car) {
+        if(maxScore < car.getScore())
+            return car.getScore();
+        return maxScore;
     }
 }

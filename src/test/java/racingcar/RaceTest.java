@@ -3,9 +3,6 @@ package racingcar;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static racingcar.configuration.ErrorMessage.ERR_CAR_NAME_LENGTH_LIMIT_MSG;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -49,7 +46,7 @@ public class RaceTest {
     void 시도할_횟수_입력_성공(String round) {
         setInputStream(round);
         race.setRaceRound();
-        assertThat(race.getRound()).isEqualTo(round);
+        assertThat(race.getRound()).isEqualTo(Integer.parseInt(round));
     }
 
     @ParameterizedTest(name = "시도할_횟수_입력_실패_재시작")
@@ -59,6 +56,59 @@ public class RaceTest {
         setInputStream("1");
         race.setRaceRound();
         assertThat(race.getRound()).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("단일_실행_결과")
+    void 단일_실행_결과() {
+        setInputStream("pobi,woni,jun");
+        race.setCarNames();
+        setInputStream("1");
+        race.setRaceRound();
+        for(Car car: race.findCars()) {
+            car.setPosition(5);
+        }
+        assertThat(race.getRoundResult()).isEqualTo("pobi : -\nwoni : -\njun : -");
+    }
+
+    @Test
+    @DisplayName("라운드별_실행_결과")
+    void 라운드별_실행_결과() {
+        setInputStream("pobi,woni,jun");
+        race.setCarNames();
+        setInputStream("2");
+        race.setRaceRound();
+        for(Car car: race.findCars()) {
+            car.setPosition(6);
+            car.setPosition(9);
+        }
+        assertThat(race.getRoundResult()).isEqualTo("pobi : --\nwoni : --\njun : --");
+    }
+
+    @Test
+    @DisplayName("단독_우승자_안내")
+    void 단독_우승자_안내() {
+        setInputStream("pobi,woni,jun");
+        race.setCarNames();
+        setInputStream("1");
+        race.setRaceRound();
+        race.findCars().get(0).setPosition(1);
+        race.findCars().get(1).setPosition(3);
+        race.findCars().get(2).setPosition(8);
+        assertThat(race.getRaceResult()).isEqualTo("jun");
+    }
+
+    @Test
+    @DisplayName("공동_우승자_안내")
+    void 공동_우승자_안내() {
+        setInputStream("pobi,woni,jun");
+        race.setCarNames();
+        setInputStream("1");
+        race.setRaceRound();
+        race.findCars().get(0).setPosition(1);
+        race.findCars().get(1).setPosition(5);
+        race.findCars().get(2).setPosition(5);
+        assertThat(race.getRaceResult()).isEqualTo("woni, jun");
     }
 
     private void setInputStream(final String input) {
