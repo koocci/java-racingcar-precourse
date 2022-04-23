@@ -95,7 +95,7 @@ public class RaceTest {
         race.findCars().get(0).setPosition(1);
         race.findCars().get(1).setPosition(3);
         race.findCars().get(2).setPosition(8);
-        assertThat(race.getRaceResult()).isEqualTo("jun");
+        assertThat(race.getRaceResult()).isEqualTo("최종 우승자는 jun");
     }
 
     @Test
@@ -108,7 +108,7 @@ public class RaceTest {
         race.findCars().get(0).setPosition(1);
         race.findCars().get(1).setPosition(5);
         race.findCars().get(2).setPosition(5);
-        assertThat(race.getRaceResult()).isEqualTo("woni, jun");
+        assertThat(race.getRaceResult()).isEqualTo("최종 우승자는 woni, jun");
     }
 
     private void setInputStream(final String input) {

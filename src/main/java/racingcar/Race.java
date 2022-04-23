@@ -2,6 +2,7 @@ package racingcar;
 
 import static racingcar.configuration.PrintMessage.INPUT_CAR_NAME_MSG;
 import static racingcar.configuration.PrintMessage.INPUT_RACE_ROUND_MSG;
+import static racingcar.configuration.PrintMessage.OUTPUT_RESULT_MSG;
 import static racingcar.configuration.PrintMessage.OUTPUT_WINNER_MSG;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -63,7 +64,9 @@ public class Race {
     public void racing() {
         for(int i = 0; i < getRound(); i++) {
             setPositions();
+            System.out.println(OUTPUT_RESULT_MSG);
             System.out.println(getRoundResult());
+            System.out.println("\n");
         }
         System.out.println(getRaceResult());
     }
