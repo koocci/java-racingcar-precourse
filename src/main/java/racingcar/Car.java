@@ -31,11 +31,15 @@ public class Car {
             this.score.setMoveForward();
     }
 
-    public String getScore() {
-        return this.score.getScore();
+    public String getScoreLine() {
+        return this.score.getScoreLine();
     }
 
     public String getResult() {
-        return getName() + " : " + getScore();
+        return getName() + " : " + getScoreLine();
+    }
+
+    public int getScore() {
+        return this.score.getScore();
     }
 }

@@ -54,14 +54,14 @@ public class CarTest {
     @DisplayName("차량_현재_위치_출력_전진")
     void 차량_현재_위치_출력_전진() {
         car.setPosition(6);
-        assertThat(car.getScore()).isEqualTo("-");
+        assertThat(car.getScoreLine()).isEqualTo("-");
     }
 
     @Test
     @DisplayName("차량_현재_위치_출력_멈춤")
     void 차량_현재_위치_출력_멈춤() {
         car.setPosition(3);
-        assertThat(car.getScore()).isEqualTo("");
+        assertThat(car.getScoreLine()).isEqualTo("");
     }
 
     @Test
