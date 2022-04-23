@@ -3,6 +3,7 @@ package racingcar;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static racingcar.configuration.ErrorMessage.ERR_CAR_NAME_LENGTH_LIMIT_MSG;
+import static racingcar.configuration.ErrorMessage.ERR_CAR_POSITION_LIMIT_MSG;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -105,5 +106,22 @@ public class CarTest {
             car.setPosition(pos);
         }
         assertThat(car.getResult()).isEqualTo("hobi : ------");
+    }
+
+    @Test
+    @DisplayName("차량_위치_입력_0부터_9까지_여부_TRUE")
+    void 차량_위치_입력_0부터_9까지_여부_TRUE() {
+        int[] positionArr = {1,2,3,4,5,6,7,8,9,0};
+        car.setPosition(1);
+
+    }
+
+    @ParameterizedTest(name = "차량_위치_입력_0부터_9까지_여부")
+    @ValueSource(ints = {10, -2, 11, 24, 4545, 10000, Integer.MAX_VALUE})
+    void 차량_위치_입력_0부터_9까지_여부(final int position) {
+        assertThatThrownBy(() -> {
+            car.setPosition(position);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERR_CAR_POSITION_LIMIT_MSG);
     }
 }
